@@ -1,7 +1,7 @@
 # ascii-art-convertor
 Small python program to convert images to ascii art.
 
-![image](images\Demonstration.png)
+![image](images/Demonstration.png)
 
 ## How to use
 
