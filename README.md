@@ -8,7 +8,7 @@ Small python program to convert images to ascii art.
 * Download this repo.
 * Running your terminal in the folder of the repo, execute the program like this:
 ```
-python main.py your_image_file amount_of_colors_to_consider
+python main.py your_image_path amount_of_colors_to_consider
 ```
 For example, you could do:
 ```
