@@ -1,6 +1,11 @@
-import cv2
+# This disables the default warnings for the library OPENCV
+import os
+os.environ["OPENCV_LOG_LEVEL"]="SILENT"
+
 import numpy as np
 import sys
+import cv2
+import collections.abc
 
 CHARACTERS = ['@', '>', '$', '~', '·', '%', 'A', 'O', '&', '+', '<', '#', '*', '^', '8', 'H', '=', '-', '?', '¿']
 
@@ -11,12 +16,16 @@ def convert_image(path, amount_of_colors):
         return
     
     if int(amount_of_colors) > len(CHARACTERS):
-        print("The amount of colors should be less than " + str(len(CHARACTERS)))
+        print("The amount of colors should be less than " + str(len(CHARACTERS)) + ".")
         return
     
     characters_per_color = {}
     
     img = cv2.imread(path, cv2.IMREAD_COLOR)
+
+    if not isinstance(img, np.ndarray):
+        print("The selected image could not be opened. Please check that the path is correct.")
+        return
 
     dim = (img.shape[0], img.shape[1])
     img = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
@@ -52,4 +61,8 @@ def convert_image(path, amount_of_colors):
     text.close()
 
 if __name__ == "__main__":
-    convert_image(sys.argv[1], sys.argv[2])
+    if len(sys.argv) == 3:
+        convert_image(sys.argv[1], sys.argv[2])
+    else:
+        print("Incorrect format. You should execute this program as follows:")
+        print("python main.py your_image_path amount_of_colors_to_consider")
