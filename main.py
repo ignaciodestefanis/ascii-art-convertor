@@ -52,4 +52,4 @@ def convert_image(path, amount_of_colors):
     text.close()
 
 if __name__ == "__main__":
-    convert_image(sys.argv[1], sys.argv[2], sys.argv[3])
+    convert_image(sys.argv[1], sys.argv[2])
